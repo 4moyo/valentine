@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Will You Be My Valentine?</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #fde6ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* floating dots background */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#f7a8c4 10%, transparent 11%);
+      background-size: 60px 60px;
+      opacity: 0.4;
+    }
+
+    .card {
+      position: relative;
+      width: 320px;
+      background: #fff;
+      border-radius: 25px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      z-index: 2;
+    }
+
+    .photo {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      border: 4px solid #f6b4cc;
+      overflow: hidden;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-family: "Comic Sans MS", cursive;
+      font-size: 22px;
+      color: #e75480;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      position: relative;
+    }
+
+    button {
+      border: none;
+      padding: 10px 22px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .yes {
+      background: linear-gradient(135deg, #ff4d88, #ff85a2);
+      color: white;
+    }
+
+    .no {
+      background: #f1f1f1;
+      position: absolute;
+      right: 20px;
+    }
+
+    .yes:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <div class="photo">
+      <!-- Replace with your image -->
+      <img src="photo.jpg" alt="Her photo">
+    </div>
+
+    <h1>Michelle Will you be my Valentine?</h1>
+
+    <div class="buttons">
+      <button class="yes" onclick="yesClicked()">Yes mi 🥰</button>
+      <button class="no" id="noBtn">No!</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 180 - 90;
+      const y = Math.random() * 120 - 60;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          background:#fde6ef;
+          text-align:center;
+          padding:30px;
+          font-family:'Comic Sans MS', cursive;
+        ">
+          <div>
+            <div style="
+              font-size:26px;
+              color:#e75480;
+              margin-bottom:18px;
+            ">
+              💖 Yay!!! I knew you'd say yes 😍 💖
+            </div>
+
+            <div style="
+              font-size:16px;
+              color:#e75480;
+              font-style: italic;
+              line-height:1.6;
+            ">
+              Michelle, you're the melody that fills my heart with love, the rhythm that makes my days brighter, and the sweetest part of my nights.
+              On this Valentine's Day, I'm thinking of all the reasons why you're amazing, your smile, your laughs, your beauty and how you make me feel
+              like I have gotten everything I have ever wanted.
+              <br><br>
+              Wishing you lots of love ❤️
+              <br><br>
+              I love you ❤️
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
