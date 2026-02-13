@@ -15,9 +15,8 @@ body {
   margin: 0;
   height: 100vh;
   background: #fde6ef;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center; /* centers everything horizontally and vertically */
   overflow-x: hidden;
   position: relative;
 }
@@ -118,23 +117,14 @@ button {
 
 /* Result Page */
 .result-page {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  padding: 20px;
-  max-width: 500px;
-  max-height: 70vh;
-  z-index: 2;
-  background: rgba(255,255,255,0.9);
+  position: relative;
+  padding: 30px;
+  max-width: 600px;
+  background: rgba(255,255,255,0.95);
   border-radius: 25px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  z-index: 2;
 }
 
 /* Message Box Text */
@@ -239,7 +229,7 @@ function showMessage(title, message) {
 
 // Button actions
 function yesClicked() {
-  createPetals(15); // extra petals for celebration
+  createPetals(15);
   showMessage(
     "💖 Yay!!! I knew you'd say yes 😍 💖",
     "Michelle, you're the melody that fills my heart with love, the rhythm that makes my days brighter, and the sweetest part of my nights. On this Valentine's Day, I'm thinking of all the reasons why you're amazing, your smile, your laughs, your beauty and how you make me feel like I have gotten everything I have ever wanted.<br><br>Wishing you lots of love ❤️"
