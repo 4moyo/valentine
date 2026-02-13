@@ -1,165 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Will You Be My Valentine?</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  font-family: "Comic Sans MS", cursive;
+}
 
-    body {
-      margin: 0;
-      height: 100vh;
-      background: #fde6ef;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
+body {
+  margin: 0;
+  height: 100vh;
+  background: #fde6ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+}
 
-    /* floating dots background */
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(#f7a8c4 10%, transparent 11%);
-      background-size: 60px 60px;
-      opacity: 0.4;
-    }
+/* Background dots */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#f7a8c4 10%, transparent 11%);
+  background-size: 60px 60px;
+  opacity: 0.4;
+  z-index: 0;
+}
 
-    .card {
-      position: relative;
-      width: 320px;
-      background: #fff;
-      border-radius: 25px;
-      padding: 30px 20px;
-      text-align: center;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-      z-index: 2;
-    }
+/* Card */
+.card {
+  position: relative;
+  width: 320px;
+  background: #fff;
+  border-radius: 25px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  z-index: 2;
+}
 
-    .photo {
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 15px;
-      border-radius: 50%;
-      border: 4px solid #f6b4cc;
-      overflow: hidden;
-    }
+.photo {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  border: 4px solid #f6b4cc;
+  overflow: hidden;
+}
 
-    .photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    h1 {
-      font-family: "Comic Sans MS", cursive;
-      font-size: 22px;
-      color: #e75480;
-      margin-bottom: 25px;
-    }
+h1 {
+  font-size: 22px;
+  color: #e75480;
+  margin-bottom: 25px;
+  text-shadow: 
+    0 0 5px #ffb6c1,
+    0 0 10px #ff99cc,
+    0 0 20px #ff66b2;
+  animation: glowPulse 2s ease-in-out infinite alternate;
+}
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      position: relative;
-    }
+/* Glow animation */
+@keyframes glowPulse {
+  from {
+    text-shadow: 
+      0 0 5px #ffb6c1,
+      0 0 10px #ff99cc,
+      0 0 20px #ff66b2;
+  }
+  to {
+    text-shadow: 
+      0 0 10px #ff99cc,
+      0 0 20px #ff66b2,
+      0 0 30px #ff3385;
+  }
+}
 
-    button {
-      border: none;
-      padding: 10px 22px;
-      border-radius: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
 
-    .yes {
-      background: linear-gradient(135deg, #ff4d88, #ff85a2);
-      color: white;
-    }
+button {
+  border: none;
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
 
-    .no {
-      background: #f1f1f1;
-      position: absolute;
-      right: 20px;
-    }
+.yes {
+  background: linear-gradient(135deg, #ff4d88, #ff85a2);
+  color: white;
+}
 
-    .yes:hover {
-      transform: scale(1.05);
-    }
-  </style>
+.no {
+  background: #f1f1f1;
+  color: #333;
+}
+
+.yes:hover, .no:hover {
+  transform: scale(1.05);
+}
+
+/* Result Page */
+.result-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 20px;
+  max-width: 500px;
+  max-height: 70vh;
+  z-index: 2;
+  background: rgba(255,255,255,0.9);
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Message Box Text */
+.title {
+  font-size: 26px;
+  color: #e75480;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.text {
+  font-size: 16px;
+  color: #e75480;
+  font-style: italic;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Fade animation */
+.fade-in {
+  animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🌹 Falling Rose Petals */
+.petal {
+  position: absolute;
+  top: -10px;
+  font-size: 24px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+</style>
 </head>
 
 <body>
-  <div class="card">
-    <div class="photo">
-      <!-- Replace with your image -->
-      <img src="photo.jpg" alt="Her photo">
-    </div>
 
-    <h1>Michelle Will you be my Valentine?</h1>
-
-    <div class="buttons">
-      <button class="yes" onclick="yesClicked()">Yes mi 🥰</button>
-      <button class="no" id="noBtn">No!</button>
-    </div>
+<div class="card">
+  <div class="photo">
+    <img src="photo.jpg" alt="Her photo">
   </div>
 
-  <script>
-    const noBtn = document.getElementById("noBtn");
+  <h1>Will you be my Valentine?</h1>
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * 180 - 90;
-      const y = Math.random() * 120 - 60;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    });
+  <div class="buttons">
+    <button class="yes" onclick="yesClicked()">Yes mi 🥰</button>
+    <button class="no" onclick="noClicked()">No!</button>
+  </div>
+</div>
 
-    function yesClicked() {
-      document.body.innerHTML = `
-        <div style="
-          height:100vh;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          background:#fde6ef;
-          text-align:center;
-          padding:30px;
-          font-family:'Comic Sans MS', cursive;
-        ">
-          <div>
-            <div style="
-              font-size:26px;
-              color:#e75480;
-              margin-bottom:18px;
-            ">
-              💖 Yay!!! I knew you'd say yes 😍 💖
-            </div>
+<script>
+// Create falling petals
+function createPetals(count = 25) {
+  for (let i = 0; i < count; i++) {
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+    petal.innerHTML = "🌹";
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+    petal.style.fontSize = (18 + Math.random() * 20) + "px";
+    petal.style.animationDelay = Math.random() * 5 + "s";
+    petal.style.transform = `rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(petal);
+  }
+}
 
-            <div style="
-              font-size:16px;
-              color:#e75480;
-              font-style: italic;
-              line-height:1.6;
-            ">
-              Michelle, you're the melody that fills my heart with love, the rhythm that makes my days brighter, and the sweetest part of my nights.
-              On this Valentine's Day, I'm thinking of all the reasons why you're amazing, your smile, your laughs, your beauty and how you make me feel
-              like I have gotten everything I have ever wanted.
-              <br><br>
-              Wishing you lots of love ❤️
-              <br><br>
-              I love you ❤️
-            </div>
-          </div>
-        </div>
-      `;
-    }
-  </script>
+// Initially create petals
+createPetals();
+
+// Show message without removing background
+function showMessage(title, message) {
+  document.querySelector('.card').style.display = 'none';
+  
+  const resultPage = document.createElement('div');
+  resultPage.classList.add('result-page', 'fade-in');
+  resultPage.innerHTML = `
+    <div class="title">${title}</div>
+    <div class="text">${message}</div>
+  `;
+  document.body.appendChild(resultPage);
+}
+
+// Button actions
+function yesClicked() {
+  createPetals(15); // extra petals for celebration
+  showMessage(
+    "💖 Yay!!! I knew you'd say yes 😍 💖",
+    "Michelle, you're the melody that fills my heart with love, the rhythm that makes my days brighter, and the sweetest part of my nights. On this Valentine's Day, I'm thinking of all the reasons why you're amazing, your smile, your laughs, your beauty and how you make me feel like I have gotten everything I have ever wanted.<br><br>Wishing you lots of love ❤️"
+  );
+}
+
+function noClicked() {
+  showMessage(
+    "😔 I knew you'd probably say no 💔😔",
+    `I knew you'd probably say no that was y i wrote all this💔😔
+    <br><br>
+    From the moment you came into my life, everything changed in the most beautiful way. You showed me what it truly means to feel safe, understood, and loved for who I really am. With you, I’ve found a place where my heart feels at peace.
+    <br><br>
+    I can’t lie, being with you makes everything feel real. I don’t have to pretend or hide—I can just be me, and that alone is priceless. Every smile of yours, every laugh, every little moment we share has become a memory I hold close to my heart.
+    <br><br>
+    I still remember when you said that if you truly love someone, you won’t give up on them. That statement stayed with me. You also said that anyone who wants you will have to suffer for you. I won’t lie—loving you may not always be easy, but if it means choosing you every day and standing firm no matter what, then I’m ready for that.
+    <br><br>
+    And I can’t forget the first time I noticed you at New Hope. You were the first person that caught my attention. From the day you forced me to eat chicken pie and made sure I ate it in front of you, to all our little fights and arguments, every moment has meant something to me. Even the fights. They became part of our story, part of what makes us us.
+    <br><br>
+    I don’t want to ruin anything we already have because what we share is special to me. But I also can’t keep quiet about how I truly feel. I love you. Deeply and truly. And I don’t want to lose you or see you taken by someone else. That’s why when you talk about your crushes, I act like I don’t pay attention—but the truth is, I do. It’s just hard for me because my heart is already choosing you.
+    <br><br>
+    I don’t promise perfection, but I promise effort. I promise loyalty, honesty, and respect. I promise to choose you every day, even when things aren’t easy. I want to grow with you, build with you, pray with you, laugh with you, and face life’s challenges hand in hand. I want to be the person you can always rely on, just as you are for me.
+    <br><br>
+    I know this might come as a shock. Maybe it feels like too much at once. Maybe you’re not ready. Maybe you don’t even fully understand how I feel right now—and that’s okay. I’m not trying to pressure you or rush you into anything.
+    <br><br>
+    I just need you to know that I really, really, really do love you. What I feel is real. It’s not a joke, not a phase, not something small. I’ve tried to keep it in, but my heart won’t let me pretend anymore.
+    <br><br>
+    Even if you need time… even if you’re confused… even if you’re not sure what to say right now—just know that my feelings are genuine. I care about you deeply. And no matter what happens, I just wanted you to know the truth of my heart.
+    <br><br>
+    I love you. Deeply and truly.`
+  );
+}
+</script>
+
 </body>
 </html>
